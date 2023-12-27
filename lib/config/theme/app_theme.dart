@@ -13,13 +13,32 @@ const List<Color> _colors = [
 ];
 
 class AppTheme {
-  final int colorIndex;
-
   AppTheme({this.colorIndex = 0})
       : assert(colorIndex >= 0 && colorIndex <= _colors.length - 1,
             "Color index must be between 0 and ${_colors.length - 1}");
 
+  final int colorIndex;
+
   ThemeData theme() {
-    return ThemeData(useMaterial3: true, colorSchemeSeed: _colors[colorIndex]);
+    return ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: _colors[colorIndex],
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(
+              fontSize: 30.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic),
+          displayMedium: TextStyle(
+              fontSize: 20.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic),
+          displaySmall: TextStyle(
+              fontSize: 15.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic),
+        ));
   }
 }

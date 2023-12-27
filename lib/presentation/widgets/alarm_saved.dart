@@ -8,7 +8,6 @@ class AlarmSaved extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
-    //TODO: refactor alarm structure
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(

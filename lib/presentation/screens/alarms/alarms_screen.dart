@@ -1,4 +1,5 @@
 import 'package:alarm_clock/domain/entities/alarm.dart';
+import 'package:alarm_clock/presentation/screens/forms/alarm_form.dart';
 import 'package:alarm_clock/presentation/providers/alarms_provider.dart';
 import 'package:alarm_clock/presentation/widgets/alarm_saved.dart';
 import 'package:flutter/material.dart';
@@ -31,19 +32,44 @@ class AlarmsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final alarmsProvider = Provider.of<AlarmsProvider>(context);
-    //TODO: CREATE A HEADER
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
-        child: Column(children: [
-          Expanded(
-            child: ListView.builder(
-                itemCount: alarmsProvider.alarmsList.length,
-                itemBuilder: (context, index) {
-                  Alarm alarm = alarmsProvider.alarmsList[index];
-                  return AlarmSaved(alarm: alarm);
-                }),
-          )
-        ]));
+      padding: const EdgeInsets.symmetric(vertical: 15.0),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: [
+              Text(
+                'My Alarms',
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AlarmForm()));
+                  },
+                  child: const Text('+'))
+            ],
+          ),
+          const AlarmsList()
+        ],
+      ),
+    );
+  }
+}
+
+class AlarmsList extends StatelessWidget {
+  const AlarmsList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final alarmsProvider = Provider.of<AlarmsProvider>(context);
+    return Expanded(
+      child: ListView.builder(
+          itemCount: alarmsProvider.alarmsList.length,
+          itemBuilder: (context, index) {
+            Alarm alarm = alarmsProvider.alarmsList[index];
+            return AlarmSaved(alarm: alarm);
+          }),
+    );
   }
 }
