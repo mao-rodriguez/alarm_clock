@@ -1,3 +1,4 @@
+import 'package:alarm_clock/domain/entities/time.dart';
 import 'package:flutter/material.dart';
 
 class Alarm {
@@ -5,16 +6,12 @@ class Alarm {
   final String alarmName;
   final TimeOfDay alarmTime;
   final String alarmSound;
-  final int hour;
-  final int minute;
-  final String format;
+  final Time time;
 
   Alarm(
-      {required this.hour,
-      required this.minute,
-      required this.format,
-      required this.alarmId,
+      {required this.alarmId,
       required this.alarmName,
       required this.alarmTime,
-      required this.alarmSound});
+      required this.alarmSound,
+      required this.time});
 }

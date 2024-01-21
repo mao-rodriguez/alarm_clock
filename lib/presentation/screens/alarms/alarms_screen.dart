@@ -1,5 +1,6 @@
 import 'package:alarm_clock/domain/entities/alarm.dart';
-import 'package:alarm_clock/presentation/screens/forms/alarm_form.dart';
+import 'package:alarm_clock/presentation/providers/time_provider.dart';
+import 'package:alarm_clock/presentation/screens/forms/new_alarm_form.dart';
 import 'package:alarm_clock/presentation/providers/alarms_provider.dart';
 import 'package:alarm_clock/presentation/widgets/alarm_saved.dart';
 import 'package:flutter/material.dart';
@@ -11,17 +12,6 @@ class AlarmsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      // appBar: AppBar(
-      //   leading: const Padding(
-      //     padding: EdgeInsets.all(6),
-      //     child: Icon(
-      //       Icons.watch_later_outlined,
-      //       color: Color.fromRGBO(100, 181, 246, 1),
-      //     ),
-      //   ),
-      //   title: const Text('Simple Alarm Clock'),
-      //   centerTitle: true,
-      // ),
       body: SafeArea(child: AlarmsWidget()),
     );
   }
@@ -32,6 +22,7 @@ class AlarmsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final timeProvider = context.watch<TimeProvider>();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15.0),
       child: Column(
@@ -44,8 +35,11 @@ class AlarmsWidget extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => AlarmForm()));
+                    timeProvider.resetTimeProvider();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NewAlarmForm()));
                   },
                   child: const Text('+'))
             ],

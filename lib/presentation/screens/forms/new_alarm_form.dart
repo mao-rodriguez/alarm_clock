@@ -5,16 +5,16 @@ import 'dart:math';
 
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
-import 'package:alarm_clock/presentation/providers/number_provider_temp.dart';
+import 'package:alarm_clock/presentation/providers/time_provider.dart';
 
-class AlarmForm extends StatelessWidget {
-  AlarmForm({super.key});
+class NewAlarmForm extends StatelessWidget {
+  NewAlarmForm({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final numberProvider = context.watch<NumberProvider>();
+    final timeProvider = context.watch<TimeProvider>();
     final alarmProvider = context.watch<AlarmsProvider>();
     return Scaffold(
       body: SafeArea(
@@ -28,10 +28,10 @@ class AlarmForm extends StatelessWidget {
                     FormField(builder: (FormFieldState<int> state) {
                       /// Hour picker
                       return NumberPicker(
-                        minValue: 0,
+                        minValue: 1,
                         maxValue: 12,
-                        value: numberProvider.hour,
-                        onChanged: (value) => numberProvider.hour = value,
+                        value: timeProvider.hour,
+                        onChanged: (value) => timeProvider.hour = value,
                       );
                     }
                         // onSaved: ((value) => hour = value!),
@@ -40,11 +40,11 @@ class AlarmForm extends StatelessWidget {
                       builder: (FormFieldState<int> state) {
                         /// Minute Picker
                         return NumberPicker(
-                            minValue: 0,
-                            maxValue: 59,
-                            value: numberProvider.minute,
-                            onChanged: (value) =>
-                                numberProvider.minute = value);
+                          minValue: 0,
+                          maxValue: 59,
+                          value: timeProvider.minute,
+                          onChanged: (value) => timeProvider.minute = value,
+                        );
                       },
                       // onSaved: ((value) => minute = value!),
                     ),
@@ -54,17 +54,15 @@ class AlarmForm extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            numberProvider.timeFormat = "AM";
-                            print(numberProvider.timeFormat);
+                            timeProvider.timeFormat = "AM";
                           },
-                          child: Container(child: const Text("AM")),
+                          child: const Text("AM"),
                         ),
                         GestureDetector(
                           onTap: () {
-                            numberProvider.timeFormat = "PM";
-                            print(numberProvider.timeFormat);
+                            timeProvider.timeFormat = "PM";
                           },
-                          child: Container(child: const Text("PM")),
+                          child: const Text("PM"),
                         ),
                       ],
                     )
@@ -80,11 +78,10 @@ class AlarmForm extends StatelessWidget {
                             alarmName: 'Alarm No: $random',
                             alarmSound: 'Ughhhh',
                             alarmTime: TimeOfDay.now(),
-                            format: numberProvider.timeFormat,
-                            hour: numberProvider.hour,
-                            minute: numberProvider.minute);
+                            time: timeProvider.currentTime);
 
                         alarmProvider.addAlarm(alarm);
+                        timeProvider.resetTimeProvider();
                       }
                     },
                     child: const Text("Save"))

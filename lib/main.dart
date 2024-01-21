@@ -1,15 +1,16 @@
 import 'package:alarm_clock/config/theme/app_theme.dart';
 import 'package:alarm_clock/presentation/providers/alarms_provider.dart';
-import 'package:alarm_clock/presentation/providers/number_provider_temp.dart';
+import 'package:alarm_clock/presentation/providers/time_provider.dart';
 import 'package:alarm_clock/presentation/screens/alarms/alarms_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(
+    // TODO: NO NEED TO SIGN ALL THE PROVIDERS IN THIS WIDGET.
     providers: [
       ChangeNotifierProvider(create: (_) => AlarmsProvider()),
-      ChangeNotifierProvider(create: (_) => NumberProvider())
+      ChangeNotifierProvider(create: (_) => TimeProvider())
     ],
     child: const MyApp(),
   ));
