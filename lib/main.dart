@@ -4,6 +4,7 @@ import 'package:alarm_clock/presentation/providers/time_provider.dart';
 import 'package:alarm_clock/presentation/screens/alarms/alarms_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 
 void main() {
   runApp(MultiProvider(

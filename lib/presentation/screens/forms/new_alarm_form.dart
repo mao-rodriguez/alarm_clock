@@ -33,9 +33,7 @@ class NewAlarmForm extends StatelessWidget {
                         value: timeProvider.hour,
                         onChanged: (value) => timeProvider.hour = value,
                       );
-                    }
-                        // onSaved: ((value) => hour = value!),
-                        ),
+                    }),
                     FormField(
                       builder: (FormFieldState<int> state) {
                         /// Minute Picker
@@ -46,7 +44,6 @@ class NewAlarmForm extends StatelessWidget {
                           onChanged: (value) => timeProvider.minute = value,
                         );
                       },
-                      // onSaved: ((value) => minute = value!),
                     ),
 
                     /// Format time: choose between AM or PM format.
