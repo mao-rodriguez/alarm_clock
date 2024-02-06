@@ -30,6 +30,9 @@ class TimeProvider extends ChangeNotifier {
   /// Return new instance of Time object.
   Time get currentTime => Time.copy(time);
 
+  /// Return the time in 24-hour format.
+  int get format24Hour => time.format24Hour;
+
   /// Reset time provider.
   void resetTimeProvider() {
     time = Time(hour: 6, minute: 0, timeFormat: '');
