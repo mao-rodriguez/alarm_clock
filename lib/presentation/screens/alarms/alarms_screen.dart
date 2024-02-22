@@ -1,5 +1,4 @@
 import 'package:alarm_clock/domain/entities/alarm.dart';
-import 'package:alarm_clock/presentation/providers/time_provider.dart';
 import 'package:alarm_clock/presentation/screens/forms/new_alarm_form.dart';
 import 'package:alarm_clock/presentation/providers/alarms_provider.dart';
 import 'package:alarm_clock/presentation/widgets/alarm_saved.dart';
@@ -22,7 +21,6 @@ class AlarmsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final timeProvider = context.watch<TimeProvider>();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15.0),
       child: Column(
@@ -35,7 +33,6 @@ class AlarmsWidget extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    timeProvider.resetTimeProvider();
                     Navigator.push(
                         context,
                         MaterialPageRoute(

@@ -1,7 +1,9 @@
+import 'package:alarm_clock/domain/enums/time_format.dart';
+
 class Time {
   int hour;
   int minute;
-  String timeFormat;
+  TimeFormat timeFormat;
   Time({required this.hour, required this.minute, required this.timeFormat});
   Time.copy(Time other)
       : hour = other.hour,
@@ -12,11 +14,11 @@ class Time {
   int get format24Hour {
     int hour24format = hour;
 
-    if (timeFormat == 'PM' && hour != 12) {
+    if (timeFormat == TimeFormat.PM && hour != 12) {
       hour24format = hour + 12;
       return hour24format;
     }
-    if (timeFormat == 'AM' && hour == 12) {
+    if (timeFormat == TimeFormat.AM && hour == 12) {
       hour24format = 0;
       return hour24format;
     }

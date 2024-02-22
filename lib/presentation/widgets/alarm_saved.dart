@@ -22,7 +22,7 @@ class AlarmSaved extends StatelessWidget {
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Text(
-              "${alarm.time.hour}:${alarm.time.minute} ${alarm.time.timeFormat}",
+              "${alarm.time.hour}:${alarm.time.minute} ${alarm.time.timeFormat.name}",
               style: const TextStyle(color: Colors.black),
             )),
       ]),
