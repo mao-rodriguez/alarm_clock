@@ -1,4 +1,5 @@
 import 'package:alarm_clock/domain/entities/alarm.dart';
+import 'package:alarm_clock/presentation/widgets/alarmAlert.dart';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'dart:developer' as developer;
 
@@ -11,7 +12,7 @@ class AlarmService {
     DateTime currentDateTime = DateTime.now();
     developer.log("programmed: ${currentDateTime.toString()}");
     AndroidAlarmManager.periodic(
-      const Duration(minutes: 5), // Repeat every 24 hours
+      const Duration(minutes: 2), // Repeat every 24 hours
       random, // Unique alarm ID
       _programmedTask,
       startAt: alarm.dateTime,
@@ -25,5 +26,6 @@ class AlarmService {
   static void _programmedTask() {
     DateTime currentDateTime = DateTime.now();
     developer.log("programmed: ${currentDateTime.toString()}");
+    showAlertDialog;
   }
 }
